@@ -23,8 +23,10 @@ const userRegistration = async (req, res) => {
     user.save();
     console.log("User Created successfully")
 
+    const myToken = await user.getAuthToken()
     
-    return res.status(200).json({ token: user });
+
+    return res.status(200).json({ token: myToken });
   } catch (errors) {
     return res.status(400).json({ errors: errors });
   }
