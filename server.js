@@ -3,6 +3,7 @@ import connectDB from "./config/db.js";
 import { config } from "dotenv";
 import { fileURLToPath } from 'url';
 import path,{ dirname } from 'path';
+import { UserRoute } from "./routes/UserRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -16,6 +17,11 @@ config({
 });
 
 connectDB();
+app.use(express.json({ extended: false }));
+
+
+app.use("/user",UserRoute)
+
 
 app.get("/", (req, res) => {
   console.log("Home dir");
